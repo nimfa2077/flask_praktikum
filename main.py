@@ -13,28 +13,27 @@ def get_all_files(start_list, full_end_list):
             folder_list.append(start_list[i])
         else:
             full_end_list.append(start_list[i])
-    if folder_list: 
+    if folder_list:
         for folder in folder_list:
             dir = os.listdir("markdown/files/" + folder)
             for i in range(0,len(dir)):
                 dir[i] = folder + "/" + dir[i]
             new_start_list += dir
         get_all_files(new_start_list, full_end_list)
-    
+
     end_list = [] + (full_end_list)
     for i in range(0, len(end_list)):
         a = end_list[i].rfind("/")
         if i != -1:
             end_list[i] = end_list[i][a+1:]
-    
-    
+
     return full_end_list, end_list
 
 
 @app.route('/')
 def index():
     names = get_all_files(os.listdir(f"markdown/files"), [])[0]
-    
+    names.sort()
     return render_template('index.html', files=names)
 
 
@@ -54,10 +53,9 @@ def sigle_page(filename):
             content_file.write(content)
         #html = Environment(loader=FileSystemLoader("templates/")).get_template("single.html")
         #print(html)
-        print(content)
+        names.sort()
+	#print(content)
         return render_template('single.html', files=names)
     else:
         return abort(404)
 
-
-app.run()
