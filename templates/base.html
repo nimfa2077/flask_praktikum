@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Illia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+	  		<h1><a href="/" class="logo">Betriebspraktikum</a></h1>
+        <ul class="list-unstyled components mb-5">
+          {% block ul  %} {% endblock %}
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        {% block  content  %} {% endblock %}
+      </div>
+		</div>
+  </body>
+</html>
